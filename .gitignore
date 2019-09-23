@@ -36,3 +36,4 @@ package-lock.json
 .node_repl_history
 .happypack
 lib
+.idea

@@ -11,7 +11,8 @@
     "url": "https://github.com/onmironov/on-react-countdown"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "publish": "npm publish"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",

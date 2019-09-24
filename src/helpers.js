@@ -18,9 +18,9 @@ const ruEnds = {
   seconds: ['секунда', 'секунды', 'секунд'],
 };
 
-const cases = [2, 0, 1, 1, 1, 2];
-
 export const getEndOfWord = (lang, type, count) => {
+  const cases = [2, 0, 1, 1, 1, 2];
+
   if (lang === 'en') {
     const index = count === 1 ? 0 : 1;
     return enEnds[type][index];

@@ -1,6 +1,6 @@
 {
   "name": "on-react-countdown",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Simple countdown",
   "keywords": [
     "react",
@@ -16,7 +16,7 @@
   "scripts": {
     "clean": "rm -rf lib",
     "build": "webpack",
-    "publish": "npm clean && npm build && npm publish"
+    "publish": "npm publish"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",

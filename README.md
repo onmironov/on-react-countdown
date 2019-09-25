@@ -23,7 +23,7 @@ import React from 'react';
 import Countdown from 'on-react-countdown';
  
 ReactDOM.render(
-  2030 will come in <Countdown end={1893456000} />,
+  <Countdown end={1893456000} />,
   document.getElementById('root')
 );
 ```
@@ -44,23 +44,23 @@ hideZeroValues  | bool  | `false` | Show only value > 0
 alwaysDoubleDigit  | bool  | `false` | Show values 07 or 03 instead 7 and 3
 limit  | number  | `null` | How much periods show (show only value > 0)
 
-### `end`
+#### `end`
 
 End of timer in UNIX format
 
-### `utc`
+#### `utc`
 
 UTC zone. If you need countdown for New York - `utc={-4}`, for Moscow - `utc={3}`
 
-### `lang`
+#### `lang`
 
 Language for days or hours naming. At now supported 2 language -- english and russian. For default `lang === 'en'`, if you want use russian language, you must use `lang={'ru'}` 
 
-### `className`
+#### `className`
 
 Class for parent and children
 
-### `text`
+#### `text`
 
 Object with days, hours, minutes and seconds naming. By default it:
 
@@ -106,11 +106,11 @@ for russian:
 }
 ```
 
-### `separator`
+#### `separator`
 
 Separator for periods
 
-### `wordsEndingOff`
+#### `wordsEndingOff`
 
 Set `wordsEndingOff={true}` you want use prop `text` like this:
 
@@ -123,18 +123,18 @@ Set `wordsEndingOff={true}` you want use prop `text` like this:
 }
 ```
 
-### `wordsOff`
+#### `wordsOff`
 
 If you want only values^ without text
 
-### `hideZeroValues`
+#### `hideZeroValues`
 
 Hide values then `value === 0`, something like **97 days 42 seconds**
 
-### `alwaysDoubleDigit`
+#### `alwaysDoubleDigit`
 
 Show **09 days 02 hours 17 minutes 01 second** instead **9 days 2 hours 17 minutes 1 second**
 
-### `limit`
+#### `limit`
 
 If you want show only **9 days 15 seconds** instead ** 9 days 0 hours 0 minutes 15 seconds **

@@ -35,12 +35,12 @@ Name      | Type | Default | Description
 end  | number  | required | End of timer on UNIX
 utc  | number  | `0` | UTC zone
 lang  | string  | `en` | Language, `en` or `ru`
-className  | string  | `Countdown` | HTML class fo0r elements
+className  | string  | `Countdown` | HTML class for elements
 text  | object  | look prop `text` | Object with words
 separator  | string  | `' '` | Separator for elements
 wordsEndingOff  | bool  | `false` | If you have just one word (look prop `text` and `wordsEndingOff` for detail)
 wordsOff  | bool  | `false` | Show only values
-hideZeroValues  | bool  | `false` | Show only value > 0
+hideZeroValues  | bool  | `false` | Show all values > 0
 alwaysDoubleDigit  | bool  | `false` | Show values 07 or 03 instead 7 and 3
 limit  | number  | `null` | How much periods show (show only value > 0)
 onEnd  | func  | `() => {}` | Callback function for end of countdown
@@ -55,12 +55,12 @@ UTC zone. If you need countdown for New York - `utc={-4}`, for Moscow - `utc={3}
 
 #### `lang`
 
-Language for days or hours naming. At now supported 2 language -- english and russian. For default `lang === 'en'`, if you want use russian language, you must use `lang={'ru'}`.
+Language for days or hours naming. At now supported 2 language -- English and Russian. For default `lang === 'en'`, if you want use russian language, you must use `lang={'ru'}`.
 `lang={'en'}` also support all languages, witch have two form of words: French, German and overs (for more information look prop `text`)
 
 #### `className`
 
-Class for parent and children
+Class for `span`
 
 #### `text`
 
@@ -132,7 +132,7 @@ Separator for periods
 
 #### `wordsEndingOff`
 
-Set `wordsEndingOff={true}` you want use prop `text` like this:
+Set `wordsEndingOff={true}` if you want use prop `text` like this:
 
 ``` js
 {
@@ -145,11 +145,11 @@ Set `wordsEndingOff={true}` you want use prop `text` like this:
 
 #### `wordsOff`
 
-If you want only values^ without text
+If you want only values, without text
 
 #### `hideZeroValues`
 
-Hide values then `value === 0`, something like **97 days 42 seconds**
+Hide values then `value === 0`, something like **97 days 12 minutes 42 seconds**
 
 #### `alwaysDoubleDigit`
 
@@ -159,6 +159,6 @@ Show **09 days 02 hours 17 minutes 01 second** instead **9 days 2 hours 17 minut
 
 If you want show only **9 days 15 seconds** instead **9 days 0 hours 0 minutes 15 seconds**
 
-#### onEnd
+#### `onEnd`
 
 Callback function witch call on end of countdown

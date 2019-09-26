@@ -87,12 +87,7 @@ class Countdown extends Component {
     let difference = end - now;
 
     if (difference < 0) {
-      this.setState({
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      }, () => this.handleOnEnd());
+      this.handleOnEnd();
       return null;
     }
 

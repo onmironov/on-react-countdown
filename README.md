@@ -56,7 +56,7 @@ UTC zone. If you need countdown for New York - `utc={-4}`, for Moscow - `utc={3}
 #### `lang`
 
 Language for days or hours naming. At now supported 2 language -- english and russian. For default `lang === 'en'`, if you want use russian language, you must use `lang={'ru'}`.
-`lang={'en'}` also support all languages, witch haw two form of words: French, German and overs (for more information look prop `text`)
+`lang={'en'}` also support all languages, witch have two form of words: French, German and overs (for more information look prop `text`)
 
 #### `className`
 

@@ -3,7 +3,7 @@ import Countdown from 'on-react-countdown';
 import './App.css';
 
 function App() {
-  const ny2020 = 1892563200;
+  const end = 1569493980;
   const text = {
     days: ['день', 'дня', 'дней'],
     hours: ['час', 'часа', 'часов'],
@@ -11,10 +11,12 @@ function App() {
     seconds: ['секунда', 'секунды', 'секунд'],
   };
 
+  const handleFinish = () => console.log('finish!');
+
   return (
     <div className="App">
       <div>
-        <Countdown end={ny2020} text={text} lang="ru" limit={2}/>
+        <Countdown end={end} onEnd={handleFinish} utc={3}/>
       </div>
     </div>
   );

@@ -23,6 +23,7 @@ class Countdown extends Component {
       null,
       PropTypes.number,
     ]),
+    onEnd: PropTypes.func,
   };
 
   static defaultProps = {
@@ -41,6 +42,7 @@ class Countdown extends Component {
     hideZeroValues: false,
     alwaysDoubleDigit: false,
     limit: null,
+    onEnd: () => {},
   };
 
   state = {};
@@ -48,6 +50,8 @@ class Countdown extends Component {
   componentDidMount() {
     this.calculateTime();
   }
+
+  handleOnEnd = () => this.props.onEnd();
 
   checkValue = value => (value < 10 ? `0${value}` : value);
 
@@ -82,12 +86,23 @@ class Countdown extends Component {
     let newState = {};
     let difference = end - now;
 
+    if (difference < 0) {
+      this.setState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+      }, () => this.handleOnEnd());
+      return null;
+    }
+
     newState.days = this.getCount(difference, 'days');
     difference -= (this.TIME.days * newState.days);
     newState.hours = this.getCount(difference, 'hours');
     difference -= (this.TIME.hours * newState.hours);
     newState.minutes = this.getCount(difference, 'minutes');
-    newState.seconds = Math.floor(difference - this.TIME.minutes * newState.minutes);
+    const seconds = Math.floor(difference - this.TIME.minutes * newState.minutes);
+    newState.seconds = seconds > 0 ? seconds : 0;
 
     if (limit) {
       newState = this.getWithLimit(newState);

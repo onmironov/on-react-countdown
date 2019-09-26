@@ -43,6 +43,7 @@ wordsOff  | bool  | `false` | Show only values
 hideZeroValues  | bool  | `false` | Show only value > 0
 alwaysDoubleDigit  | bool  | `false` | Show values 07 or 03 instead 7 and 3
 limit  | number  | `null` | How much periods show (show only value > 0)
+onEnd  | func  | `() => {}` | Callback function for end of countdown
 
 #### `end`
 
@@ -54,7 +55,8 @@ UTC zone. If you need countdown for New York - `utc={-4}`, for Moscow - `utc={3}
 
 #### `lang`
 
-Language for days or hours naming. At now supported 2 language -- english and russian. For default `lang === 'en'`, if you want use russian language, you must use `lang={'ru'}` 
+Language for days or hours naming. At now supported 2 language -- english and russian. For default `lang === 'en'`, if you want use russian language, you must use `lang={'ru'}`.
+`lang={'en'}` also support all languages, witch haw two form of words: French, German and overs (for more information look prop `text`)
 
 #### `className`
 
@@ -73,7 +75,7 @@ Object with days, hours, minutes and seconds naming. By default it:
 }
 ```
 
-For russian language use:
+For Russian language use:
 
 ``` js
 {
@@ -81,6 +83,24 @@ For russian language use:
     hours: ['час', 'часа', 'часов'],
     minutes: ['минута', 'минуты', 'минут'],
     seconds: ['секунда', 'секунды', 'секунд'],
+}
+```
+
+For German language use:
+
+``` js
+{
+    days: ['tag', 'tage'],
+    ...
+}
+```
+
+For French language use:
+
+``` js
+{
+    days: ['jour', 'jours'],
+    ...
 }
 ```
 
@@ -137,4 +157,8 @@ Show **09 days 02 hours 17 minutes 01 second** instead **9 days 2 hours 17 minut
 
 #### `limit`
 
-If you want show only **9 days 15 seconds** instead ** 9 days 0 hours 0 minutes 15 seconds **
+If you want show only **9 days 15 seconds** instead **9 days 0 hours 0 minutes 15 seconds**
+
+#### onEnd
+
+Callback function witch call on end of countdown

@@ -1,6 +1,6 @@
 # Simple react countdown
 
-Simple countdown timer for React.
+Simple countdown for React.
 
 ## Usage
 
@@ -47,24 +47,27 @@ onEnd  | func  | `() => {}` | Callback function for end of countdown
 
 #### `end`
 
-End of timer in UNIX format
+End of timer on UNIX format
 
 #### `utc`
 
-UTC zone. If you need countdown for New York - `utc={-4}`, for Moscow - `utc={3}`
+Utc zone, for New York - `utc={-4}`, for Moscow `utc={3}`
 
 #### `lang`
 
-Language for days or hours naming. At now supported 2 language -- English and Russian. For default `lang === 'en'`, if you want use russian language, you must use `lang={'ru'}`.
-`lang={'en'}` also support all languages, witch have two form of words: French, German and overs (for more information look prop `text`)
+Language for time periods. Two types are available: English and Russian. English is selected by default. For English (French, German, etc.) there is no declension, so there are only two types of time periods - singular and plural - `['day', 'days']`.
+
+For Russian (Ukrainian, Belorussian, etc.), declinations exists, therefore there are three types of time periods  - for one, for two to four, for five and more - `['день', 'дня', 'дней']`.
+
+More information is available in `text`.
 
 #### `className`
 
-Class for `span`
+Class for HTML elements
 
 #### `text`
 
-Object with days, hours, minutes and seconds naming. By default it:
+An Object with the names of time periods. By default (English, etc):
 
 ``` js
 {
@@ -75,7 +78,7 @@ Object with days, hours, minutes and seconds naming. By default it:
 }
 ```
 
-For Russian language use:
+Russian, etc:
 
 ``` js
 {
@@ -86,25 +89,7 @@ For Russian language use:
 }
 ```
 
-For German language use:
-
-``` js
-{
-    days: ['tag', 'tage'],
-    ...
-}
-```
-
-For French language use:
-
-``` js
-{
-    days: ['jour', 'jours'],
-    ...
-}
-```
-
-If you use prop `wordsEndingOff={true}` for english:
+if you use `wordsEndingOff={true}`, for English, etc.
 
 ``` js
 {
@@ -115,7 +100,7 @@ If you use prop `wordsEndingOff={true}` for english:
 }
 ```
 
-for russian: 
+Russian, etc: 
 
 ``` js
 {
@@ -128,11 +113,11 @@ for russian:
 
 #### `separator`
 
-Separator for periods
+Separator for time periods
 
 #### `wordsEndingOff`
 
-Set `wordsEndingOff={true}` if you want use prop `text` like this:
+`wordsEndingOff={true}` uses if you pass the text similar to
 
 ``` js
 {
@@ -145,20 +130,24 @@ Set `wordsEndingOff={true}` if you want use prop `text` like this:
 
 #### `wordsOff`
 
-If you want only values, without text
+Only the values ​​of time periods are displayed, without text
 
 #### `hideZeroValues`
 
-Hide values then `value === 0`, something like **97 days 12 minutes 42 seconds**
+Hide time periods with a value of 0
 
 #### `alwaysDoubleDigit`
 
-Show **09 days 02 hours 17 minutes 01 second** instead **9 days 2 hours 17 minutes 1 second**
+Always display the time period value with a two-digit number, **09 days 02 hours 17 minutes 01 second** instead of **9 days 2 hours 17 minutes 1 second**
 
 #### `limit`
 
-If you want show only **9 days 15 seconds** instead **9 days 0 hours 0 minutes 15 seconds**
+It displays as many time periods as specified in limit, starting with a larger one. If the value of the time period is 0, the period is not taken into account
 
 #### `onEnd`
 
-Callback function witch call on end of countdown
+Callback function which is called at the end of the timer
+
+***
+
+The translation was undertaken by: [Antonova Anastasia](https://www.facebook.com/profile.php?id=100034403650990)

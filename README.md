@@ -78,7 +78,7 @@ An Object with the names of time periods. By default (English, etc):
 }
 ```
 
-Russian, etc:
+For Russian, etc:
 
 ``` js
 {
@@ -100,7 +100,7 @@ if you use `wordsEndingOff={true}`, for English, etc.
 }
 ```
 
-Russian, etc: 
+For Russian, etc: 
 
 ``` js
 {
@@ -148,4 +148,4 @@ It displays as many time periods as specified in limit, starting with a larger o
 
 Callback function which is called at the end of the timer
 
-<small>The translation was undertaken by: [Antonova Anastasia](https://www.facebook.com/profile.php?id=100034403650990)</small>
+The translation was undertaken by: [Antonova Anastasia](https://www.facebook.com/profile.php?id=100034403650990)

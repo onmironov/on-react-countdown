@@ -3,12 +3,13 @@ import Countdown from 'on-react-countdown';
 import './App.css';
 
 function App() {
-  const end = 1569493980;
+  const now = new Date().getTime() / 1000;
+  const end = now + (60 * 60) + 5;
   const text = {
-    days: ['день', 'дня', 'дней'],
-    hours: ['час', 'часа', 'часов'],
-    minutes: ['минута', 'минуты', 'минут'],
-    seconds: ['секунда', 'секунды', 'секунд'],
+    days   : 'дн.',
+    hours  : 'ч.',
+    minutes: 'мин.',
+    seconds: 'сек.',
   };
 
   const handleFinish = () => console.log('finish!');
@@ -16,7 +17,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Countdown end={end} onEnd={handleFinish} utc={3}/>
+        <Countdown end={end} onEnd={handleFinish} text={text} limit={ 3 } wordsEndingOff/>
       </div>
     </div>
   );

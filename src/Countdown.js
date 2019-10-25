@@ -45,13 +45,19 @@ class Countdown extends Component {
     onEnd: () => {},
   };
 
-  state = {};
+  state = {
+    periods: {},
+  };
 
   componentDidMount() {
     this.calculateTime();
   }
 
-  handleOnEnd = () => this.props.onEnd();
+  handleOnEnd = () => {
+    const { onEnd } = this.props;
+
+    onEnd();
+  };
 
   checkValue = value => (value < 10 ? `0${value}` : value);
 
@@ -67,11 +73,26 @@ class Countdown extends Component {
 
   getWithLimit = (newState) => {
     const { limit } = this.props;
-    const array = Object.keys(newState);
     const result = {};
+    const values = Object.values(newState);
+    let prevKey = '';
+    let firstIndex = values.findIndex(value => !!value);
+    let keys = Object.keys(newState);
 
-    array.forEach((period) => {
-      if (Object.keys(result).length < limit && !!newState[period]) {
+    if (keys.length - limit < firstIndex) {
+      firstIndex = keys.length - limit;
+    }
+
+    if (firstIndex) {
+      keys = keys.slice(firstIndex);
+    }
+
+    keys.forEach((period) => {
+      if (Object.keys(result).length < limit) {
+        result[period] = newState[period];
+        prevKey = period;
+      } else if (!!newState[period] && newState[prevKey] === 0) {
+        delete result[prevKey];
         result[period] = newState[period];
       }
     });
@@ -80,10 +101,11 @@ class Countdown extends Component {
   };
 
   calculateTime = () => {
+    const { periods } = this.state;
     const { end, utc, limit } = this.props;
     const now = (new Date().getTime() / 1000) + (utc * this.TIME.hours);
     let isNeedSetState = false;
-    let newState = {};
+    let newPeriods = {};
     let difference = end - now;
 
     if (difference < 0) {
@@ -91,26 +113,26 @@ class Countdown extends Component {
       return null;
     }
 
-    newState.days = this.getCount(difference, 'days');
-    difference -= (this.TIME.days * newState.days);
-    newState.hours = this.getCount(difference, 'hours');
-    difference -= (this.TIME.hours * newState.hours);
-    newState.minutes = this.getCount(difference, 'minutes');
-    const seconds = Math.floor(difference - this.TIME.minutes * newState.minutes);
-    newState.seconds = seconds > 0 ? seconds : 0;
+    newPeriods.days = this.getCount(difference, 'days');
+    difference -= (this.TIME.days * newPeriods.days);
+    newPeriods.hours = this.getCount(difference, 'hours');
+    difference -= (this.TIME.hours * newPeriods.hours);
+    newPeriods.minutes = this.getCount(difference, 'minutes');
+    const seconds = Math.floor(difference - this.TIME.minutes * newPeriods.minutes);
+    newPeriods.seconds = seconds >= 1 ? seconds : 0;
 
     if (limit) {
-      newState = this.getWithLimit(newState);
+      newPeriods = this.getWithLimit(newPeriods);
     }
 
-    Object.keys(newState).forEach((period) => {
-      if (newState[period] !== this.state[period] && !isNeedSetState) {
+    Object.keys(newPeriods).forEach((period) => {
+      if (newPeriods[period] !== periods[period] && !isNeedSetState) {
         isNeedSetState = true;
       }
     });
 
     if (isNeedSetState) {
-      this.setState({ ...newState },
+      this.setState({ periods: newPeriods },
         () => setTimeout(() => this.calculateTime(end), 1000));
     } else {
       setTimeout(() => this.calculateTime(end), 1000);
@@ -169,13 +191,14 @@ class Countdown extends Component {
 
   render() {
     const { className } = this.props;
-    const array = Object.keys(this.state) || null;
+    const { periods } = this.state;
+    const array = Object.keys(periods) || null;
 
     if (!array || !array.length) return null;
 
     return (
       <span className={className}>
-        { array.map((period, i) => this.renderPeriod(period, this.state[period], i, array.length)) }
+        { array.map((period, i) => this.renderPeriod(period, periods[period], i, array.length)) }
       </span>
     );
   }

@@ -90,11 +90,11 @@ class Countdown extends Component {
     keys.forEach((period) => {
       if (Object.keys(result).length < limit) {
         result[period] = newState[period];
-        prevKey = period;
       } else if (!!newState[period] && newState[prevKey] === 0) {
         delete result[prevKey];
         result[period] = newState[period];
       }
+      prevKey = period;
     });
 
     return result;

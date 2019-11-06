@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   const now = new Date().getTime() / 1000;
-  const end = now + (60 * 60) + 5;
+  const end = 1575190800;
   const text = {
     days   : 'дн.',
     hours  : 'ч.',

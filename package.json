@@ -1,6 +1,6 @@
 {
   "name": "on-react-countdown",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Simple countdown",
   "keywords": [
     "react",
@@ -8,7 +8,11 @@
   ],
   "main": "./lib/Countdown.js",
   "license": "MIT",
-  "author": "Oleg Mironov",
+  "author": {
+    "name": "Oleg Mironov",
+    "email": "mail@onov.ru",
+    "url": "http://onov.ru"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/onmironov/on-react-countdown"

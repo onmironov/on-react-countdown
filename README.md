@@ -33,6 +33,7 @@ ReactDOM.render(
 Name      | Type | Default
 :-------- |:-----:| :-----: |
 end  | number  | required
+endInSeconds  | bool  | `false`
 utc  | number  | `0`
 lang  | string  | `en`
 className  | string  | `Countdown`
@@ -48,6 +49,10 @@ onEnd  | func  | `() => {}`
 ### `end`
 
 End of timer on UNIX format
+
+### `endInSeconds`
+
+If `true`, in `end` the number of seconds should be passed before the timer ends
 
 ### `utc`
 

@@ -1,24 +1,11 @@
 import React from 'react';
-import Countdown from 'on-react-countdown';
 import './App.css';
+import Comp from './component';
 
 function App() {
-  const now = new Date().getTime() / 1000;
-  const end = 1575190800;
-  const text = {
-    days   : 'дн.',
-    hours  : 'ч.',
-    minutes: 'мин.',
-    seconds: 'сек.',
-  };
-
-  const handleFinish = () => console.log('finish!');
-
-  return (
+return (
     <div className="App">
-      <div>
-        <Countdown end={end} onEnd={handleFinish} text={text} limit={ 3 } wordsEndingOff/>
-      </div>
+      <Comp/>
     </div>
   );
 }

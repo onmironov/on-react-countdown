@@ -19,6 +19,7 @@ class Countdown extends Component {
     wordsOff: PropTypes.bool,
     hideZeroValues: PropTypes.bool,
     alwaysDoubleDigit: PropTypes.bool,
+    endInSeconds: PropTypes.bool,
     limit: PropTypes.oneOfType([
       null,
       PropTypes.number,
@@ -41,17 +42,35 @@ class Countdown extends Component {
     wordsOff: false,
     hideZeroValues: false,
     alwaysDoubleDigit: false,
+    endInSeconds: false,
     limit: null,
     onEnd: () => {},
   };
 
   state = {
     periods: {},
+    timer: null,
   };
 
   componentDidMount() {
-    this.calculateTime();
+    const { endInSeconds, end } = this.props;
+
+    if (endInSeconds) {
+      this.setState({ timer: end }, () => this.calculateTime());
+    } else {
+      this.calculateTime();
+    }
   }
+
+  componentDidUpdate({ end: prevEnd }) {
+    const { endInSeconds, end } = this.props;
+
+    if (endInSeconds && prevEnd !== end) {
+      this.setNewEnd(end);
+    }
+  }
+
+  setNewEnd = end => this.setState({ timer: end });
 
   handleOnEnd = () => {
     const { onEnd } = this.props;
@@ -101,12 +120,18 @@ class Countdown extends Component {
   };
 
   calculateTime = () => {
-    const { periods } = this.state;
-    const { end, utc, limit } = this.props;
-    const now = (new Date().getTime() / 1000) + (utc * this.TIME.hours);
+    const { periods, timer } = this.state;
+    const {
+      end, utc, limit, endInSeconds,
+    } = this.props;
     let isNeedSetState = false;
     let newPeriods = {};
-    let difference = end - now;
+    let difference = timer;
+
+    if (!endInSeconds) {
+      const now = (new Date().getTime() / 1000) + (utc * this.TIME.hours);
+      difference = end - now;
+    }
 
     if (difference < 0) {
       this.handleOnEnd();
@@ -132,10 +157,19 @@ class Countdown extends Component {
     });
 
     if (isNeedSetState) {
-      this.setState({ periods: newPeriods },
-        () => setTimeout(() => this.calculateTime(end), 1000));
+      const newState = { periods: newPeriods };
+
+      if (endInSeconds) {
+        newState.timer = timer - 1;
+      }
+
+      this.setState(newState,
+        () => setTimeout(() => this.calculateTime(), 1000));
+    } else if (endInSeconds) {
+      this.setState({ timer: timer - 1 },
+        () => setTimeout(() => this.calculateTime(), 1000));
     } else {
-      setTimeout(() => this.calculateTime(end), 1000);
+      setTimeout(() => this.calculateTime(), 1000);
     }
   };
 

@@ -56,7 +56,7 @@ class Countdown extends Component {
     const { endInSeconds, end } = this.props;
 
     if (endInSeconds) {
-      this.setState({ timer: end }, () => this.calculateTime());
+      this.setNewEnd(end, this.calculateTime);
     } else {
       this.calculateTime();
     }
@@ -66,11 +66,11 @@ class Countdown extends Component {
     const { endInSeconds, end } = this.props;
 
     if (endInSeconds && prevEnd !== end) {
-      this.setNewEnd(end);
+      this.setNewEnd(end, this.calculateTime);
     }
   }
 
-  setNewEnd = end => this.setState({ timer: end });
+  setNewEnd = (end, callback = null) => this.setState({ timer: end }, callback);
 
   handleOnEnd = () => {
     const { onEnd } = this.props;

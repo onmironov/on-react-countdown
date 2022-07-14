@@ -23,8 +23,8 @@
     "publish": "npm publish"
   },
   "peerDependencies": {
-    "prop-types": "^15.6.0",
-    "react": "^16.9.0"
+    "prop-types": "*",
+    "react": "*"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
